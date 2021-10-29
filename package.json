@@ -1,0 +1,58 @@
+{
+  "name": "browdb",
+  "version": "1.0.0-rc.0",
+  "license": "MIT",
+  "packageManager": "yarn@3.0.2",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "repository": {
+    "url": "https://github.com/KBeDevel/Browdb",
+    "type": "git"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "browser",
+    "cookies",
+    "storage",
+    "front-end"
+  ],
+  "scripts": {
+    "lint:dry": "eslint src --ext .ts",
+    "lint:fix": "yarn lint:dry --fix",
+    "lint": "yarn lint:dry",
+    "test": "jest",
+    "compile": "rollup -c",
+    "build": "coffee scripts/build.coffee",
+    "postinstall": "tsc"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.14.1",
+    "@types/concurrently": "^6.3.0",
+    "@types/jest": "^27.0.2",
+    "@types/node": "^16.11.6",
+    "@types/rimraf": "^3.0.2",
+    "@types/testing-library__jest-dom": "^5.14.1",
+    "@typescript-eslint/eslint-plugin": "^5.2.0",
+    "@typescript-eslint/parser": "^5.2.0",
+    "coffeescript": "^2.6.1",
+    "concurrently": "^6.3.0",
+    "eslint": "^8.1.0",
+    "eslint-plugin-security-node": "^1.0.14",
+    "eslint-plugin-tsdoc": "^0.2.14",
+    "fs-extra": "^10.0.0",
+    "jest": "^27.3.1",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.58.3",
+    "rollup-plugin-typescript2": "^0.30.0",
+    "standard-version": "^9.3.2",
+    "ts-jest": "^27.0.7",
+    "ts-node": "^10.4.0",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.4.4"
+  },
+  "dependencies": {
+    "buffer": "^6.0.3"
+  }
+}
