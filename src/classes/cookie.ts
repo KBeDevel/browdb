@@ -28,7 +28,10 @@ export default class Cookie {
 
   public static delete (cookieName: string): void {
     document.cookie = [
-      createCookieFragment(cookieName, EMPTY_STRING)
+      [
+        createCookieFragment(cookieName, EMPTY_STRING),
+        createCookieFragment('max-age', String(0))
+      ].join(EMPTY_STRING)
     ].join(EMPTY_STRING)
   }
 
