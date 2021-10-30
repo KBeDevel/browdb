@@ -1,4 +1,4 @@
-import type { BrowserStorageConfig, StorageContext } from '../types'
+import type { BrowserStorageConfig, BrowserStorageSet, StorageContext } from '../types'
 import { encode as encodeValue } from '../helpers/encoder'
 import { STORAGES } from '../helpers/storage-accessors'
 import { DEFAULT_STORAGE_CONTEXT } from '../utils/constants'
@@ -28,7 +28,7 @@ export default class BrowserStorage {
     return obtainedItem
   }
 
-  public setItem (object: { key: string, value: string }, encode?: boolean): boolean {
+  public setItem (object: BrowserStorageSet, encode?: boolean): boolean {
     this._interface.setItem(object.key,  encode ? encodeValue(object.value) : object.value)
     return this.isRegistered(object.key)
   }
@@ -52,7 +52,7 @@ export default class BrowserStorage {
     return new BrowserStorage({ context }).getItem<ExpectedItem>(key)
   }
 
-  public static saveItem (object: { key: string; value: string }, context = DEFAULT_STORAGE_CONTEXT) {
+  public static saveItem (object: BrowserStorageSet, context = DEFAULT_STORAGE_CONTEXT) {
     return new BrowserStorage({ context }).setItem(object)
   }
 

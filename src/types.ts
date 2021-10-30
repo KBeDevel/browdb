@@ -39,3 +39,8 @@ export type StorageContext = 'local' | 'session'
 export type BrowserStorageConfig = {
   context: StorageContext
 }
+
+export type BrowserStorageSet = {
+  key: string
+  value: string
+}
