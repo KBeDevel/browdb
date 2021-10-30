@@ -9,6 +9,11 @@ describe('Cookie set', () => {
     encodeValues: true,
   }
 
+  beforeEach(() => {
+    Cookie.delete(cookieConfig.keySet.keyName)
+    Cookie.delete('anonymousSession')
+  })
+
   it('should register a username cookie with static method', () => {
     expect(Cookie.create(cookieConfig).check()).toBe(true)
   })
@@ -26,5 +31,36 @@ describe('Cookie set', () => {
     Cookie.create(cookieConfig)
     Cookie.delete(cookieConfig.keySet.keyName)
     expect(Cookie.obtain(cookieConfig.keySet.keyName)).toBeFalsy()
+  })
+
+  it('should save a set of cookies', () => {
+    Cookie.create({
+      values: {
+        [cookieConfig.keySet.keyName]: cookieConfig.keySet.assignValue,
+        sessionId: 'anonymousSession'
+      }
+    })
+    expect(Cookie.obtain(cookieConfig.keySet.keyName)).toBeTruthy()
+    expect(Cookie.obtain('sessionId')).toBeTruthy()
+  })
+
+  it('should save a set of cookies using an instance', () => {
+    const cookie = new Cookie({
+      values: {
+        [cookieConfig.keySet.keyName]: cookieConfig.keySet.assignValue,
+        sessionId: 'anonymousSession'
+      }
+    })
+    expect(cookie.check()).toBeTruthy()
+  })
+
+  it('should save an expired cookie', () => {
+    const futureDate = new Date()
+    futureDate.setMonth(futureDate.getMonth() - 1)
+    const cookie = new Cookie({
+      ...cookieConfig,
+      expiresTime: futureDate
+    })
+    expect(cookie.save().isExpired()).toBe(true)
   })
 })
