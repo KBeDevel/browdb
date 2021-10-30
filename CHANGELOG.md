@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0-rc.3](https://github.com/KBeDevel/Browdb/compare/v1.0.0-rc.2...v1.0.0-rc.3) (2021-10-30)
+
+
+### Bug Fixes
+
+* cookie deletion ([75e14bb](https://github.com/KBeDevel/Browdb/commit/75e14bbcbcb42fde58d20292068071615ebf3a22))
+* cookie tests ([a767f2b](https://github.com/KBeDevel/Browdb/commit/a767f2be94339bf2815cc8383af32388c1018d01))
+
 ## [1.0.0-rc.2](https://github.com/KBeDevel/Browdb/compare/v1.0.0-rc.1...v1.0.0-rc.2) (2021-10-30)
 
 
