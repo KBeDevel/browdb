@@ -19,6 +19,7 @@
     "front-end"
   ],
   "scripts": {
+    "release": "standard-version",
     "lint:dry": "eslint src --ext .ts",
     "lint:fix": "yarn lint:dry --fix",
     "lint": "yarn lint:dry",
