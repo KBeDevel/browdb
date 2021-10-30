@@ -51,7 +51,7 @@ describe('Cookie set', () => {
         sessionId: 'anonymousSession'
       }
     })
-    expect(cookie.check()).toBeTruthy()
+    expect(cookie.save().check()).toBeTruthy()
   })
 
   it('should save an expired cookie', () => {
