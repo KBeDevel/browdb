@@ -32,6 +32,16 @@ export default class Cookie {
     ].join(EMPTY_STRING)
   }
 
+  public isExpired (): boolean {
+    if (this._settings.expiresTime) {
+      const expirationTimestamp = this._settings.expiresTime instanceof Date
+        ? Math.round(this._settings.expiresTime.getTime())
+        : this._settings.expiresTime
+      return expirationTimestamp <= Date.now()
+    }
+    return false
+  }
+
   public check (cookieName?: string): boolean {
     if (cookieName) {
       return Cookie.isRegistered(cookieName)
