@@ -5,6 +5,12 @@
   "packageManager": "yarn@3.0.2",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
+  "jsnext:main": "lib-esm/index.js",
+  "module": "lib-esm/index.js",
+  "author": {
+    "name": "Benjamin Calisto",
+    "email": "be.calisto@protonmail.com"
+  },
   "repository": {
     "url": "https://github.com/KBeDevel/Browdb",
     "type": "git"
@@ -30,7 +36,7 @@
     "transpile": "tsc",
     "bundle": "webpack",
     "build": "coffee scripts/build.coffee",
-    "postinstall": "tsc"
+    "prepublish": "yarn build"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.14.1",
