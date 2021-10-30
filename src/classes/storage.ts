@@ -12,11 +12,11 @@ export default class BrowserStorage {
     this._interface = STORAGES[config.context]
   }
 
-  public isRegistered (key: string) {
+  public isRegistered (key: string): boolean {
     return !!this._interface.getItem(key)
   }
 
-  public getItem<ExpectedItem = string | null> (key: string) {
+  public getItem<ExpectedItem = string | null> (key: string): string | ExpectedItem | null {
     const obtainedItem = this._interface.getItem(key)
     if (obtainedItem) {
       try {
@@ -38,25 +38,25 @@ export default class BrowserStorage {
     return !this.isRegistered(key)
   }
 
-  public clear () {
+  public clear (): void {
     this._interface.clear()
   }
 
-  public clearAll () {
+  public clearAll (): void {
     Object.keys(STORAGES).forEach(key => {
       STORAGES[key as StorageContext].clear()
     })
   }
 
-  public static obtainItem<ExpectedItem = string> (key: string, context = DEFAULT_STORAGE_CONTEXT) {
+  public static obtainItem<ExpectedItem = string> (key: string, context = DEFAULT_STORAGE_CONTEXT): string | ExpectedItem | null {
     return new BrowserStorage({ context }).getItem<ExpectedItem>(key)
   }
 
-  public static saveItem (object: BrowserStorageSet, context = DEFAULT_STORAGE_CONTEXT) {
+  public static saveItem (object: BrowserStorageSet, context = DEFAULT_STORAGE_CONTEXT): boolean {
     return new BrowserStorage({ context }).setItem(object)
   }
 
-  public static removeItem (key: string, context = DEFAULT_STORAGE_CONTEXT) {
+  public static removeItem (key: string, context = DEFAULT_STORAGE_CONTEXT): boolean {
     return new BrowserStorage({ context }).removeItem(key)
   }
 }
