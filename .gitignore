@@ -9,10 +9,13 @@
 !/.yarn/cache
 #/.pnp.*
 
+# Local deps
 node_modules
 
+# Tests results
 coverage
 
-dist
-build
-sandbox
+# Build result
+lib
+lib-esm
+_bundles

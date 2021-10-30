@@ -4,18 +4,20 @@ fs = require 'fs-extra'
 rimraf = require 'rimraf'
 
 do ->
-  buildDir = path.resolve(__dirname, '..', 'dist')
+  buildDirs = [
+    path.resolve __dirname, '..', 'lib'
+    path.resolve __dirname, '..', 'lib-esm'
+    path.resolve __dirname, '..', '_bundles'
+  ]
 
-  if not (await fs.exists buildDir)
-    fs.mkdir buildDir
+  for dir in buildDirs then do (dir) ->
+    if not (await fs.exists dir)
+      fs.mkdir dir
+    rimraf.sync dir
 
-  rimraf.sync buildDir
-
-  concurrently ['yarn compile'],
+  concurrently ['yarn transpile', 'yarn transpile:esm', 'yarn bundle'],
     {
       killOthers: ['failure']
       maxProcesses: 1
       raw: true
     }
-
-  await fs.remove path.resolve(__dirname, '..', 'dist', 'types.js')
