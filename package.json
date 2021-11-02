@@ -39,14 +39,14 @@
     "prepublish": "yarn build"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/jest-dom": "^5.15.0",
     "@types/concurrently": "^6.3.0",
     "@types/jest": "^27.0.2",
     "@types/node": "^16.11.6",
     "@types/rimraf": "^3.0.2",
     "@types/testing-library__jest-dom": "^5.14.1",
-    "@typescript-eslint/eslint-plugin": "^5.2.0",
-    "@typescript-eslint/parser": "^5.2.0",
+    "@typescript-eslint/eslint-plugin": "^5.3.0",
+    "@typescript-eslint/parser": "^5.3.0",
     "coffeescript": "^2.6.1",
     "concurrently": "^6.3.0",
     "eslint": "^8.1.0",
