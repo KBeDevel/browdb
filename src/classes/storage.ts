@@ -3,6 +3,9 @@ import { encode as encodeValue } from '../helpers/encoder'
 import { STORAGES } from '../helpers/storage-accessors'
 import { DEFAULT_STORAGE_CONTEXT } from '../utils/constants'
 
+/**
+ * A browser storage accessor. The context is defined in the object instance configuration
+ */
 export default class BrowserStorage {
   private _interface!: Storage
 

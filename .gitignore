@@ -9,6 +9,10 @@
 !/.yarn/cache
 #/.pnp.*
 
+# Dev deps
+.vscode
+.idea
+
 # Local deps
 node_modules
 
