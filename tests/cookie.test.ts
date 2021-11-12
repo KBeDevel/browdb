@@ -11,7 +11,7 @@ describe('Cookie set', () => {
 
   beforeEach(() => {
     Cookie.delete(cookieConfig.keySet.keyName)
-    Cookie.delete('anonymousSession')
+    Cookie.delete('sessionId')
   })
 
   it('should register a username cookie with static method', () => {
@@ -19,7 +19,7 @@ describe('Cookie set', () => {
   })
 
   it('should register a username cookie', () => {
-    expect(new Cookie(cookieConfig).save().check()).toBe(true)
+    expect(new Cookie(cookieConfig).save()).toBe(true)
   })
 
   it('should register a username cookie and verify the value using the static isRegistered method', () => {
@@ -51,16 +51,17 @@ describe('Cookie set', () => {
         sessionId: 'anonymousSession'
       }
     })
-    expect(cookie.save().check()).toBeTruthy()
+    expect(cookie.save()).toBeTruthy()
   })
 
-  it('should save an expired cookie', () => {
+  it('should not save an expired cookie', () => {
     const futureDate = new Date()
     futureDate.setMonth(futureDate.getMonth() - 1)
     const cookie = new Cookie({
       ...cookieConfig,
       expiresTime: futureDate
     })
-    expect(cookie.save().isExpired()).toBe(true)
+    expect(cookie.save()).not.toBe(true)
+    expect(cookie.isExpired()).toBe(true)
   })
 })
