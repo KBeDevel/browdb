@@ -19,6 +19,10 @@ node_modules
 # Tests results
 coverage
 
+# Arbitrary extensions
+*.ls
+*.dart
+
 # Build result
 lib
 lib-esm
