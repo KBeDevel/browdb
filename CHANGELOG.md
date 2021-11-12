@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0-rc.5](https://github.com/KBeDevel/Browdb/compare/v1.0.0-rc.4...v1.0.0-rc.5) (2021-11-12)
+
+
+### Bug Fixes
+
+* optimize build script ([8f34c22](https://github.com/KBeDevel/Browdb/commit/8f34c221ac6066edb5127f4157f8f2de1ed0d932))
+
 ## [1.0.0-rc.4](https://github.com/KBeDevel/Browdb/compare/v1.0.0-rc.3...v1.0.0-rc.4) (2021-11-11)
 
 
