@@ -4,10 +4,12 @@ fs = require 'fs-extra'
 rimraf = require 'rimraf'
 
 do ->
+  rootDir = path.resolve __dirname, '..'
+
   buildDirs = [
-    path.resolve __dirname, '..', 'lib'
-    path.resolve __dirname, '..', 'lib-esm'
-    path.resolve __dirname, '..', '_bundles'
+    path.join rootDir, 'lib'
+    path.join rootDir, 'lib-esm'
+    path.join rootDir, '_bundles'
   ]
 
   for dir in buildDirs then do (dir) ->
@@ -21,3 +23,5 @@ do ->
       maxProcesses: 1
       raw: true
     }
+
+  return
