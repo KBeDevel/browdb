@@ -8,6 +8,18 @@ Note: this library **is not compatible** for server-side use
 
 ## How to use
 
+### Installation
+
+```sh
+npm install browdb
+```
+
+or
+
+```sh
+yarn add browdb
+```
+
 ### Using browser storage
 
 ```typescript
