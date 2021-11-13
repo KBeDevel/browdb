@@ -13,15 +13,21 @@ do ->
   ]
 
   for dir in buildDirs then do (dir) ->
-    if not (await fs.exists dir)
-      fs.mkdir dir
+    unless await fs.pathExists dir
+      await fs.mkdir dir
     rimraf.sync dir
 
-  concurrently ['yarn transpile', 'yarn transpile:esm', 'yarn bundle'],
+  await concurrently(
+    [
+      'yarn transpile'
+      'yarn transpile:esm'
+      'yarn bundle'
+    ]
     {
       killOthers: ['failure']
       maxProcesses: 1
       raw: true
     }
+  )
 
   return
