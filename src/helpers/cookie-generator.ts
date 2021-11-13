@@ -5,6 +5,10 @@
  * @returns a formatted cookie string.
  * @example createCookieFragment('username', 'John Doe') // 'username=John Doe;'
  */
-export function createCookieFragment (key: string, value: string): string {
-  return `${key}=${value};`
+export function createCookieFragment (key: string, value?: string): string {
+  if (value !== undefined) {
+    value = encodeURIComponent(value)
+    return `${key}=${value};`
+  }
+  return key.concat(';')
 }
