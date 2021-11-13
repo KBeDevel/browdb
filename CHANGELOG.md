@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0-rc.6](https://github.com/KBeDevel/Browdb/compare/v1.0.0-rc.5...v1.0.0-rc.6) (2021-11-13)
+
+
+### Features
+
+* add complete cookie configuration support ([39c6a17](https://github.com/KBeDevel/Browdb/commit/39c6a175d781ef7e008a3a40632e5f545639da77))
+* add encoding support for static BrowerStorage.saveItem method ([3709496](https://github.com/KBeDevel/Browdb/commit/37094965d2a24f4532f9c33b53d930677e4f45eb))
+* add key-only cookie fragment support ([dd4bb0f](https://github.com/KBeDevel/Browdb/commit/dd4bb0f322a79ead4c313e7c7b99be7e0e7f54d9))
+* add MultipleCookieSet optional generic typing support ([1411482](https://github.com/KBeDevel/Browdb/commit/1411482cb138740120587c85c8f7108a22d81813))
+
+
+### Bug Fixes
+
+* remove jest dom types ([f130d4f](https://github.com/KBeDevel/Browdb/commit/f130d4f46860b108da5023047f32bb4aaab795c6))
+
 ## [1.0.0-rc.5](https://github.com/KBeDevel/Browdb/compare/v1.0.0-rc.4...v1.0.0-rc.5) (2021-11-12)
 
 
