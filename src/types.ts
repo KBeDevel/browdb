@@ -34,8 +34,8 @@ export type SingleCookieSet = {
 /**
  * A type definition for key-value dictionaries
  */
-export type MultipleCookieSet = {
-  values: PrimitiveRecord
+export type MultipleCookieSet<ValuesType = Primitive> = {
+  values: PrimitiveRecord<ValuesType>
 }
 
 /**
