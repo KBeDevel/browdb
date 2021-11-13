@@ -1,5 +1,5 @@
 import { createCookieFragment } from '../helpers/cookie-generator'
-import type { PrimitiveRecord, CookieSet, CookieSetConfig } from '../types'
+import type { PrimitiveRecord, CookieSet, CookieSetConfig, Primitive } from '../types'
 import { encode } from '../helpers/encoder'
 import { EMPTY_STRING, EQUALS_OPERATOR, SEMI_COLON, WHITE_SPACE } from '../utils/constants'
 import { CookieConfigReferencesMap } from '../helpers/cookie-config-map'
@@ -70,8 +70,10 @@ export default class Cookie {
       secure: this._settings.secure
     }
     Object.keys(cookies).forEach(cookie => {
+      // Prevents exception when the implementation force to use an object as value
+      const cookieValue = typeof cookies[cookie] === 'object' ? JSON.stringify(cookies[cookie]) : cookies[cookie] as Primitive
       const cookieFragments = [
-        createCookieFragment(cookie, String(cookies[cookie]))
+        createCookieFragment(cookie, String(cookieValue))
       ]
 
       if (cookieConfig.path)
@@ -91,12 +93,14 @@ export default class Cookie {
 
       if (cookieConfig.sameSite)
         cookieFragments.push(createCookieFragment(CookieConfigReferencesMap.sameSite, cookieConfig.sameSite))
-
+      
       if (cookieConfig.secure)
-        cookieFragments.push(createCookieFragment(CookieConfigReferencesMap.secure, String(cookieConfig.secure)))
+        cookieFragments.push(createCookieFragment(CookieConfigReferencesMap.secure))
+
+      const cookieString = cookieFragments.join(EMPTY_STRING)
 
       // Now, register the cookie in the current document cookie
-      document.cookie = cookieFragments.join(EMPTY_STRING)
+      document.cookie = cookieString
     })
     return this.check()
   }
@@ -106,10 +110,13 @@ export default class Cookie {
    * @returns `true` if all the specified cookies are removed, if not returns `false`
    */
   public remove (): boolean {
-    const cookies = this._settings.encodeValues
+    const cookieSetRaw = this._settings.keySet
+      ? Cookie.searchCookie(this._settings.keySet.keyName)
+      : this._settings.values
+    const cookieSet = this._settings.encodeValues
       ? this.getEncodedValues()
-      : (this._settings.keySet || this._settings.values)
-    Object.keys(cookies).forEach(cookie => {
+      : cookieSetRaw
+    Object.keys(cookieSet).forEach(cookie => {
       Cookie.delete(cookie)
     })
     return !this.check()
@@ -174,12 +181,13 @@ export default class Cookie {
    * Remove a cookie from the current browser environment according to a given cookie name
    * @param cookieName - an string cookie name
    */
-  public static delete (cookieName: string): void {
+  public static delete (cookieName: string): boolean {
     document.cookie = [
       [
         createCookieFragment(cookieName, EMPTY_STRING),
         createCookieFragment(CookieConfigReferencesMap.maxAge, String(0))
       ].join(EMPTY_STRING)
     ].join(EMPTY_STRING)
+    return !Cookie.isRegistered(cookieName)
   }
 }
