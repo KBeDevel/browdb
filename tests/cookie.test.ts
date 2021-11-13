@@ -1,4 +1,4 @@
-import { Cookie, CookieSet } from '../src/index'
+import { Cookie, CookieSet, MultipleCookieSet } from '../src/index'
 
 describe('Cookie set', () => {
   const cookieConfig: CookieSet = {
@@ -19,7 +19,9 @@ describe('Cookie set', () => {
   })
 
   it('should register a username cookie', () => {
-    expect(new Cookie(cookieConfig).save()).toBe(true)
+    const cookie = new Cookie(cookieConfig)
+    cookie.save()
+    expect(cookie.check(cookieConfig.keySet.keyName)).toBe(true)
   })
 
   it('should register a username cookie and verify the value using the static isRegistered method', () => {
@@ -28,20 +30,30 @@ describe('Cookie set', () => {
   })
 
   it('should delete a username cookie', () => {
+    const cookie = new Cookie(cookieConfig)
+    cookie.save()
+    expect(cookie.remove()).toBe(true)
+  })
+
+  it('should delete a username cookie using statics methods', () => {
     Cookie.create(cookieConfig)
-    Cookie.delete(cookieConfig.keySet.keyName)
-    expect(Cookie.obtain(cookieConfig.keySet.keyName)).toBeFalsy()
+    expect(Cookie.delete(cookieConfig.keySet.keyName)).toBe(true)
+  })
+
+  it ('should obtain a saved cookie using static methods', () => {
+    Cookie.create(cookieConfig)
+    expect(Cookie.obtain(cookieConfig.keySet.keyName)).toBeTruthy()
   })
 
   it('should save a set of cookies', () => {
-    Cookie.create({
+    const cookie: CookieSet<MultipleCookieSet<string>> = {
       values: {
-        [cookieConfig.keySet.keyName]: cookieConfig.keySet.assignValue,
+        [cookieConfig.keySet.keyName]: cookieConfig.keySet.assignValue as string,
         sessionId: 'anonymousSession'
       }
-    })
-    expect(Cookie.obtain(cookieConfig.keySet.keyName)).toBeTruthy()
-    expect(Cookie.obtain('sessionId')).toBeTruthy()
+    }
+    const instance = Cookie.create(cookie)
+    expect(instance.check()).toBe(true)
   })
 
   it('should save a set of cookies using an instance', () => {
@@ -51,17 +63,71 @@ describe('Cookie set', () => {
         sessionId: 'anonymousSession'
       }
     })
-    expect(cookie.save()).toBeTruthy()
+    expect(cookie.save()).toBe(true)
+  })
+
+  it('should save a cookie without expiration time and evaluate it as not expired', () => {
+    const cookie = new Cookie(cookieConfig)
+    cookie.save()
+    expect(cookie.isExpired()).toBe(false)
+  })
+
+  it('should save a cookie with a complete configuration', () => {
+    const futureDate = new Date()
+    futureDate.setMonth(futureDate.getMonth() + 1)
+    const cookie = new Cookie({
+      ...cookieConfig,
+      domain: window.location.hostname,
+      encodeValues: true,
+      expiresTime: futureDate,
+      maxAge: parseInt(((Date.now() / 1000) + 5000).toFixed(0)),
+      path: '/',
+      sameSite: 'Strict',
+      secure: false
+    })
+    expect(cookie.save()).toBe(true)
+  })
+
+  // TODO: Set-up an HTTPS testing instance
+  // it('should save a cookie with a complete configuration in HTTPS mode', () => {
+  //   const futureDate = new Date()
+  //   futureDate.setMonth(futureDate.getMonth() + 1)
+  //   const cookie = new Cookie({
+  //     ...cookieConfig,
+  //     domain: window.location.hostname,
+  //     encodeValues: true,
+  //     expiresTime: futureDate,
+  //     maxAge: parseInt(((Date.now() / 1000) + 5000).toFixed(0)),
+  //     path: '/',
+  //     sameSite: 'Strict',
+  //     secure: true
+  //   })
+  //   expect(cookie.save()).toBe(true)
+  // })
+
+  it('should save a cookie set using encoding', () => {
+    const cookie = new Cookie({
+      values: {
+        [cookieConfig.keySet.keyName]: cookieConfig.keySet.assignValue,
+        anotherCookieName: 'sampleValue'
+      },
+      domain: window.location.hostname,
+      encodeValues: true,
+      maxAge: parseInt(((Date.now() / 1000) + 5000).toFixed(0)),
+      path: '/',
+      sameSite: 'Strict'
+    })
+    expect(cookie.save()).toBe(true)
   })
 
   it('should not save an expired cookie', () => {
-    const futureDate = new Date()
-    futureDate.setMonth(futureDate.getMonth() - 1)
+    const pastDate = new Date()
+    pastDate.setMonth(pastDate.getMonth() - 1)
     const cookie = new Cookie({
       ...cookieConfig,
-      expiresTime: futureDate
+      expiresTime: pastDate
     })
-    expect(cookie.save()).not.toBe(true)
+    cookie.save()
     expect(cookie.isExpired()).toBe(true)
   })
 })
