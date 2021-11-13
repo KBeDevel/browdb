@@ -1057,7 +1057,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/testing-library__jest-dom@npm:^5.14.1, @types/testing-library__jest-dom@npm:^5.9.1":
+"@types/testing-library__jest-dom@npm:^5.9.1":
   version: 5.14.1
   resolution: "@types/testing-library__jest-dom@npm:5.14.1"
   dependencies:
@@ -1795,7 +1795,6 @@ __metadata:
     "@types/jest": ^27.0.2
     "@types/node": ^16.11.7
     "@types/rimraf": ^3.0.2
-    "@types/testing-library__jest-dom": ^5.14.1
     "@typescript-eslint/eslint-plugin": ^5.3.1
     "@typescript-eslint/parser": ^5.3.1
     buffer: ^6.0.3
