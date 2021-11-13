@@ -55,8 +55,8 @@ export default class BrowserStorage {
     return new BrowserStorage({ context }).getItem<ExpectedItem>(key)
   }
 
-  public static saveItem (object: BrowserStorageSet, context = DEFAULT_STORAGE_CONTEXT): boolean {
-    return new BrowserStorage({ context }).setItem(object)
+  public static saveItem (object: BrowserStorageSet, context = DEFAULT_STORAGE_CONTEXT, encode?: boolean): boolean {
+    return new BrowserStorage({ context }).setItem(object, !!encode)
   }
 
   public static removeItem (key: string, context = DEFAULT_STORAGE_CONTEXT): boolean {
