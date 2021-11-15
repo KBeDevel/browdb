@@ -14,7 +14,9 @@ module.exports = {
     '**/*.test.ts',
     '**/*.spec.ts',
     'scripts/**/*',
-    '**/dist/**/*',
+    'lib/**/*',
+    'lib-esm/**/*',
+    '_bundles/**/*',
     '**/*.js'
   ],
   parser: '@typescript-eslint/parser',
