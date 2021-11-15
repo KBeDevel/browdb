@@ -159,13 +159,21 @@ export default class Cookie {
   /**
    * Get a cookie value according to a given cookie name
    * @param cookieName - an string cookie name
+   * @param decode - specify if the method should try to decode from Base64 the current cookie value
    * @returns the current cookie value as a string. By default, if the cookie is not registered, this method will return
    * an empty string
    */
-  public static obtain (cookieName: string): string {
-    return document.cookie.split(SEMI_COLON + WHITE_SPACE).find(
+  public static obtain (cookieName: string, decode?: boolean): string {
+    const rawValue = decodeURIComponent(document.cookie.split(SEMI_COLON + WHITE_SPACE).find(
       row => row.startsWith(cookieName + EQUALS_OPERATOR)
-    )?.split(EQUALS_OPERATOR)[1] ?? EMPTY_STRING
+    )?.split(EQUALS_OPERATOR)[1] ?? EMPTY_STRING)
+    try {
+      if (decode)
+        return Buffer.from(rawValue, 'base64').toString('ascii')
+    } catch (_) {
+      return rawValue
+    }
+    return rawValue
   }
 
   /**
