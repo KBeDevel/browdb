@@ -167,12 +167,8 @@ export default class Cookie {
     const rawValue = decodeURIComponent(document.cookie.split(SEMI_COLON + WHITE_SPACE).find(
       row => row.startsWith(cookieName + EQUALS_OPERATOR)
     )?.split(EQUALS_OPERATOR)[1] ?? EMPTY_STRING)
-    try {
-      if (decode)
-        return Buffer.from(rawValue, 'base64').toString('ascii')
-    } catch (_) {
-      return rawValue
-    }
+    if (decode)
+      return Buffer.from(rawValue, 'base64').toString('ascii')
     return rawValue
   }
 
