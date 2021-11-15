@@ -88,6 +88,23 @@ describe('Cookie set', () => {
     expect(cookie.save()).toBe(true)
   })
 
+  it('should save a cookie with a complete configuration without using encoding', () => {
+    const futureDate = new Date()
+    futureDate.setMonth(futureDate.getMonth() + 1)
+    const cookie = new Cookie({
+      ...cookieConfig,
+      domain: window.location.hostname,
+      encodeValues: true,
+      expiresTime: futureDate,
+      maxAge: parseInt(((Date.now() / 1000) + 5000).toFixed(0)),
+      path: '/',
+      sameSite: 'Strict',
+      secure: false
+    })
+    cookie.save()
+    expect(Cookie.obtain(cookieConfig.keySet.keyName, true)).toBeTruthy()
+  })
+
   // TODO: Set-up an HTTPS testing instance
   // it('should save a cookie with a complete configuration in HTTPS mode', () => {
   //   const futureDate = new Date()
