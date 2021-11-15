@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0-rc.7](https://github.com/KBeDevel/Browdb/compare/v1.0.0-rc.6...v1.0.0-rc.7) (2021-11-15)
+
+
+### Features
+
+* add decoding support for Cookie.obtain method ([6659122](https://github.com/KBeDevel/Browdb/commit/665912217c688eefc87a5646d5bc39c9dce505b2))
+
+
+### Bug Fixes
+
+* remove useless try-catch from Cookie.obtain method ([b54b465](https://github.com/KBeDevel/Browdb/commit/b54b465ed3d0aa1753bcffcc9c139e405f03f1a5))
+
 ## [1.0.0-rc.6](https://github.com/KBeDevel/Browdb/compare/v1.0.0-rc.5...v1.0.0-rc.6) (2021-11-13)
 
 
