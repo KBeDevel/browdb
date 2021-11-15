@@ -1,7 +1,9 @@
 {
   "name": "browdb",
+  "description": "A simple and easy to use TypeScript/JavaScript API for browser storage control with some additional features",
   "version": "1.0.0-rc.6",
   "license": "MIT",
+  "homepage": "https://github.com/KBeDevel/browdb#readme",
   "packageManager": "yarn@3.0.2",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
