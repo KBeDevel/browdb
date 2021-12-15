@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0-rc.8](https://github.com/KBeDevel/Browdb/compare/v1.0.0-rc.7...v1.0.0-rc.8) (2021-12-15)
+
+
+### Features
+
+* add src to publish package and update dev dependencies ([f323f3a](https://github.com/KBeDevel/Browdb/commit/f323f3aa1968a7b634e98531824c20b4afd1c3e2))
+
 ## [1.0.0-rc.7](https://github.com/KBeDevel/Browdb/compare/v1.0.0-rc.6...v1.0.0-rc.7) (2021-11-15)
 
 
