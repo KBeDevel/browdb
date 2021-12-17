@@ -4,7 +4,7 @@
   "version": "1.0.0-rc.8",
   "license": "MIT",
   "homepage": "https://github.com/KBeDevel/browdb#readme",
-  "packageManager": "yarn@3.0.2",
+  "packageManager": "yarn@3.1.1",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "jsnext:main": "lib-esm/index.js",
