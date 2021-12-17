@@ -20,7 +20,8 @@
   "files": [
     "lib",
     "lib-esm",
-    "_bundles"
+    "_bundles",
+    "src"
   ],
   "keywords": [
     "browser",
