@@ -44,7 +44,7 @@
     "@testing-library/jest-dom": "^5.16.1",
     "@types/concurrently": "^6.4.0",
     "@types/jest": "^27.0.3",
-    "@types/node": "^16.11.13",
+    "@types/node": "^16.11.14",
     "@types/rimraf": "^3.0.2",
     "@typescript-eslint/eslint-plugin": "^5.7.0",
     "@typescript-eslint/parser": "^5.7.0",
